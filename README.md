@@ -58,15 +58,6 @@ LayerSwap: you are on layer ... Hosting is OFF ...
 
 That line means it worked.
 
-## Making a release
-
-Releases are based on the `## Version:` line in `LayerSwapStealth.toc`:
-
-1. Change the version in the `.toc`, for example `## Version: 1.0.1`.
-2. Commit and push to `main`.
-
-A GitHub Action (`.github/workflows/release.yml`) sees the new version, packages `LayerSwapStealth-1.0.1.zip`, tags `v1.0.1`, and publishes it as a GitHub Release. If the version already has a release, the push doesn't make a new one. The zip is ready to upload to CurseForge.
-
 ## Credits
 
 - **LayerSwap** is made by Adam5288. This add-on only changes one of LayerSwap's settings and doesn't include any of its code.

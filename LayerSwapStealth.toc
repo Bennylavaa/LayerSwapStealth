@@ -3,6 +3,7 @@
 ## Notes: Log in stealthed - LayerSwap's Host is switched off every time you log in.
 ## Version: 1.0.0
 ## Author: Bennylavaa
+## X-Curse-Project-ID: 1800917
 ## Dependencies: LayerSwap
 ## IconTexture: Interface\AddOns\LayerSwapStealth\Media\logo
 

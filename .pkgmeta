@@ -1,0 +1,11 @@
+package-as: LayerSwapStealth
+
+# repo files that don't belong in the add-on zip (dotfiles like .github are skipped already)
+ignore:
+  - README.md
+  - LICENSE
+
+# Marks LayerSwap as a required dependency on CurseForge, so the CurseForge app installs it too.
+# Uncomment once you've checked LayerSwap's slug (the last part of its CurseForge URL):
+# required-dependencies:
+#   - layerswap
