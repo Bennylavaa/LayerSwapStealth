@@ -7,16 +7,19 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
-  release:
+  tag:
+    if: github.ref_type == 'branch'
     runs-on: ubuntu-latest
     env:
       ADDON: LayerSwapStealth
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # the packager builds the changelog from history
+          fetch-depth: 0
 
       - name: Read the version from the .toc
         id: ver
@@ -29,20 +32,28 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "v$VERSION is already released - bump '## Version:' in the .toc to make a new one."
+            echo "v$VERSION is already tagged - bump '## Version:' in the .toc to make a new release."
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
             echo "Releasing v$VERSION"
           fi
 
-      - name: Tag the version
+      - name: Tag the version and start the packaging run
         if: steps.ver.outputs.exists == 'false'
         run: |
           git tag "v${{ steps.ver.outputs.version }}"
           git push origin "v${{ steps.ver.outputs.version }}"
+          gh workflow run release.yml --ref "v${{ steps.ver.outputs.version }}"
+
+  package:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the packager builds the changelog from history
 
       - name: Package and upload (GitHub Release + CurseForge)
-        if: steps.ver.outputs.exists == 'false'
         uses: BigWigsMods/packager@v2
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
