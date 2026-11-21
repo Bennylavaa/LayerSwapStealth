@@ -8,11 +8,3 @@ login:SetScript("OnEvent", function(self, _, isLogin)
     if cmd then cmd("off") end
   end)
 end)
-
-local unlock = CreateFrame("Frame")
-unlock:SetScript("OnUpdate", function()
-  local db = LayerSwapDB
-  if type(db) == "table" and db.hostLockUntil ~= nil then
-    db.hostLockUntil, db.hostLockWho = nil, nil
-  end
-end)

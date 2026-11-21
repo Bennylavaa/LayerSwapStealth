@@ -1,7 +1,7 @@
 ## Interface: 11509, 16001, 20506
 ## Title: LayerSwap |cfffff569Stealth|r
-## Notes: Log in stealthed - LayerSwap's Host is switched off at every login, and no forced Host after a swap.
-## Version: 1.0.3
+## Notes: Log in stealthed - LayerSwap's Host is switched off at every login.
+## Version: 1.0.4
 ## Author: Bennylavaa
 ## X-Curse-Project-ID: 1800917
 ## Dependencies: LayerSwap
