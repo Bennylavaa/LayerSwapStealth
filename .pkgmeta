@@ -1,5 +1,9 @@
 package-as: LayerSwapStealth
 
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
 # repo files that don't belong in the add-on zip (dotfiles like .github are skipped already)
 ignore:
   - README.md
